@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  golang:
+    image: golang:latest
+    ports:
+      - 5000:5000
+    links:
+      - mysql
+    volumes:
+      - ./app:/go/src/app
+    # command: 'go run /go/src/app/main.go'
+    command: 'tail -f /dev/null'
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3366:3306
+    volumes:
+      - "./mysql:/var/lib/mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+    links:
+      - mysql
+    ports:
+      - 8080:80
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
+
+volumes:
+  data:
+    driver: local
