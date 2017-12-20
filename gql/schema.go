@@ -1,8 +1,8 @@
 package gql
 
 import (
-	"app/db"
-	"app/model"
+	"graphql-golang/db"
+	"graphql-golang/model"
 	"fmt"
 	"github.com/graphql-go/graphql"
 	"log"

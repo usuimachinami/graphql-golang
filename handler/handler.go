@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"app/common"
-	"app/db"
-	"app/gql"
-	"app/model"
+	"graphql-golang/common"
+	"graphql-golang/db"
+	"graphql-golang/gql"
+	"graphql-golang/model"
 	"bytes"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"

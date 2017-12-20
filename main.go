@@ -1,8 +1,8 @@
 package main
 
 import (
-	"app/common"
-	"app/handler"
+	"graphql-golang/common"
+	"graphql-golang/handler"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )

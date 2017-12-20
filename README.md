@@ -5,7 +5,7 @@
 Docker containers up
 
 ```
-cd /path/to/project
+cd /path/to/project/env
 
 docker-compose up -d
 ```
