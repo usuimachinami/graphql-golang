@@ -1,10 +1,10 @@
 package main
 
 import (
-	"graphql-golang/common"
-	"graphql-golang/handler"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"graphql-golang/common"
+	"graphql-golang/handler"
 )
 
 func main() {
@@ -15,9 +15,9 @@ func main() {
 
 	e.GET("/hello", handler.Hello())
 	e.POST("/login", handler.Login())
-	r := e.Group("/restricted")
+	r := e.Group("/query")
 	r.Use(middleware.JWT([]byte(common.SECRET_KEY)))
-	r.POST("", handler.Restricted())
+	r.POST("", handler.Query())
 
 	e.Start(":5000")
 }

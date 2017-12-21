@@ -8,7 +8,7 @@ services:
     links:
       - mysql
     volumes:
-      - ../:/go/src/app
+      - ../:/go/src/graphql-golang
     # command: 'go run /go/src/app/main.go'
     command: 'tail -f /dev/null'
 

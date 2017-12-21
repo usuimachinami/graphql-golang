@@ -1,16 +1,17 @@
 package handler
 
 import (
+	"bytes"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/labstack/echo"
 	"graphql-golang/common"
 	"graphql-golang/db"
 	"graphql-golang/gql"
 	"graphql-golang/model"
-	"bytes"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/labstack/echo"
 	"log"
 	"net/http"
 	"time"
+	"strconv"
 )
 
 func Hello() echo.HandlerFunc {
@@ -26,7 +27,7 @@ func Login() echo.HandlerFunc {
 
 		db := db.ConnectGORM()
 		user := []model.User{}
-		db.Find(&user, "name=? and password=?", username, password)
+		db.Where("name=? and password=?", username, password).Find(&user)
 
 		if len(user) > 0 && username == user[0].Name {
 			// Create token
@@ -44,6 +45,7 @@ func Login() echo.HandlerFunc {
 				return err
 			}
 			return c.JSON(http.StatusOK, map[string]string{
+				"user_id": strconv.FormatInt(user[0].Id, 10),
 				"token": t,
 			})
 		}
@@ -52,7 +54,7 @@ func Login() echo.HandlerFunc {
 	}
 }
 
-func Restricted() echo.HandlerFunc {
+func Query() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		bufBody := new(bytes.Buffer)
 		bufBody.ReadFrom(c.Request().Body)
