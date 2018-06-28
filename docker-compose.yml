@@ -8,7 +8,7 @@ services:
     links:
       - mysql
     volumes:
-      - ../:/go/src/graphql-golang
+      - ./:/go/src/graphql-golang
     command: 'go run /go/src/graphql-golang/main.go'
 
   mysql:
@@ -16,7 +16,7 @@ services:
     ports:
       - 3366:3306
     volumes:
-      - "./mysql:/var/lib/mysql"
+      - "./local/mysql:/var/lib/mysql"
     environment:
       - MYSQL_ROOT_PASSWORD=password
 
@@ -32,7 +32,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - ./phpmyadmin/sessions:/sessions
+      - ./local/phpmyadmin/sessions:/sessions
 
 volumes:
   data:
