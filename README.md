@@ -2,27 +2,24 @@
 
 ## setup
 
+Install dep.
+
+```
+go get -u github.com/golang/dep/cmd/dep
+```
+
 Docker containers up
 
 ```
-cd /path/to/project/env
+cd /path/to/project/
 
 docker-compose up -d
 ```
 
-Install dependent packages in the golang container.
+Access to phpmyadmin and import ./mysql/video.sql
 
 ```
-go get github.com/labstack/echo
-go get github.com/dgrijalva/jwt-go
-go get github.com/jinzhu/gorm
-go get github.com/jinzhu/gorm/dialects/mysql
-go get github.com/go-sql-driver/mysql
-go get github.com/graphql-go/graphql
+http://127.0.0.1:8080
 ```
 
-Run app.
-
-```
-go run src/app/main.go
-```
+Open ./frontend/index.html on your browser.
