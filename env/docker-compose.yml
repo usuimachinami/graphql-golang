@@ -9,8 +9,7 @@ services:
       - mysql
     volumes:
       - ../:/go/src/graphql-golang
-    # command: 'go run /go/src/app/main.go'
-    command: 'tail -f /dev/null'
+    command: 'go run /go/src/graphql-golang/main.go'
 
   mysql:
     image: mysql:5.7
